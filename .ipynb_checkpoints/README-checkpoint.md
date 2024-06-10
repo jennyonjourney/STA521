@@ -51,13 +51,13 @@ The data sets, image1, image2, image3 have in total 345,556 data points with the
 
 When drawing maps, we can find that the images show different distribution of labels, which mean they clearly have different images showing different clouds location. According to three maps with x, y coordinates and expert labels, i.i.d assumption for the data sets is not justified for this data set because the maps show the clear division of 0, -1, +1 based on coordinates. It means that data points closed with each other in terms of x, y coordinates are especially dependent with each other. The interesting part of x, y coordinates of all images is that the range of x, y are almost the same with each other, for example, the range of x, y in image1 is 65 to 368 and 2 to 383 each whereas the range of x, y in image2 is 65 to 369 and 2 to 383 each. Based on this, we can assume that all images are about the same location (blocks) but different orbits. The paper focused on 10 different MISR orbits of path 26 out of 233 and each orbit represents one complete trip which normally took about 16 days. It implies that image1,2,3 represent the same location but different trips of MISR and time frame. This assumption again, means the data sets are not i.i.d.
 
-![Picture2](https://github.com/jennyonjourney/predictive-modeling/01_EDA/map.png)
+<img src="01_EDA/map.png" width="500" />
 
 In order to understand the relationship of each variable, normalization is needed. I used the min-max normalization. When doing modeling even though it might not mandatory to normalize values for all modeling cases, but to get more precise, unbiased prediction, we need to normalize values of each variable. 
 
 According to the correlation plots below, the relationship between expert labels and the individual features looks clear. The class 1 (cloud) has lower NDAI and the class -1 (not cloud) has higher NDAI. This is the same with SD and CORR variables but the boxplots show that both labels 1 and -1 have very long tails. Regarding SD, it seems that the class -1 (not cloud) has bigger variance. In Figure3.2, features themselves show a relatively strong correlation with each other. Especially, the radiance values of five different angles show a strong relationship with each other. The highest correlation among features is the relation between AF and AN.  
 
-![Picture3](https://github.com/jennyonjourney/predictive-modeling/01_EDA/feature_comparison.png)
+<img src="01_EDA/feature_comparison.png" width="500" />
 
 
 ### 3.2 Preparation of data
@@ -72,23 +72,23 @@ The split3 data sets are the way of splitting image1, 2, 3 as just a train, vali
 
 Figure4 shows that we can divide the entire data into five pieces based on its x, y coordinates. Table1 shows the size of each split sets. Here I would like to recommend split set 3 and set 4 for not independent data sets
 
-![Picture4](https://github.com/jennyonjourney/predictive-modeling/01_EDA/spatial_blocks.png)
+<img src="01_EDA/spatial_blocks.png" width="500" />
 
-![Picture5](https://github.com/jennyonjourney/predictive-modeling/01_EDA/size_split_data.png)
+<img src="01_EDA/size_split_data.png" width="250" />
 
 
 **Accuracy of trivial classifier**
 
 In the scenarios that the data sets are imbalanced and concentrated on one specific label which a classifier has as its value, the high average accuracy is shown with a trivial classifier. Here the original data ('all data') in the table shows 61% of cloud-free proportion and this proportion is same with the split data based on the same proportional split of the original data sets. The reason that image split data set shows the highest accuracy is that the specific data sets designated as train and test sets have many proportions of cloud-free data by chance. This result suggests the baseline that classification modeling is not trivial but rather needs to consider both modeling parameters and cross-validation based on the right split of data sets.
 
-![Picture6](https://github.com/jennyonjourney/predictive-modeling/01_EDA/acc_classifier.png)
+<img src="01_EDA/acc_classifier.png" width="250" />
 
 
 **Feature selection**
 
 Three of the best features are "NDAI", "SD" and "DF". I conducted importance test based on accuracy using varImp() function. Also, according to the correlation matrix, three camera angles out of six camera angles, AF, BF, AN have a relatively high correlation with other variables whereas CF and DF have relatively low correlation with other variables. So based on two aspects, two major features NDAI, SD and the radiation with DF angle can be selected as the best features for the model. 
 
-![Picture7](https://github.com/jennyonjourney/predictive-modeling/01_EDA/feature_imp.png)
+<img src="01_EDA/feature_imp.png" width="500" />
 
 
 **CVmaster function for effective comparison**
@@ -105,27 +105,26 @@ Using various packages, we tried to mitigate the bias in the baseline model. We 
 
 **Logistic regression** 
 
-AI Fairness 360(AIF 360) is an open-source library designed to help researchers detect, evaluate, and mitigate biases in machine learning algorithms. Depending on how they reduce bias, it offers a comprehensive suite of algorithms categorized as preprocessing, in-processing, and post-processing.
+
 
 **LDA** 
 
-AI Fairness 360(AIF 360) is an open-source library designed to help researchers detect, evaluate, and mitigate biases in machine learning algorithms. Depending on how they reduce bias, it offers a comprehensive suite of algorithms categorized as preprocessing, in-processing, and post-processing.
+
 
 **QDA** 
 
-AI Fairness 360(AIF 360) is an open-source library designed to help researchers detect, evaluate, and mitigate biases in machine learning algorithms. Depending on how they reduce bias, it offers a comprehensive suite of algorithms categorized as preprocessing, in-processing, and post-processing.
+
 
 **Naive Bayes** 
 
-AI Fairness 360(AIF 360) is an open-source library designed to help researchers detect, evaluate, and mitigate biases in machine learning algorithms. Depending on how they reduce bias, it offers a comprehensive suite of algorithms categorized as preprocessing, in-processing, and post-processing.
+
 
 **Random Forest** 
 
-AI Fairness 360(AIF 360) is an open-source library designed to help researchers detect, evaluate, and mitigate biases in machine learning algorithms. Depending on how they reduce bias, it offers a comprehensive suite of algorithms categorized as preprocessing, in-processing, and post-processing.
+
 
 **KNN** 
 
-AI Fairness 360(AIF 360) is an open-source library designed to help researchers detect, evaluate, and mitigate biases in machine learning algorithms. Depending on how they reduce bias, it offers a comprehensive suite of algorithms categorized as preprocessing, in-processing, and post-processing.
 
 
 ### 4.2 Metrics
