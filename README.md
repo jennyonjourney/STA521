@@ -45,7 +45,7 @@ Overall, 57 data units with 7,114,248 1.1-km resolution pixels with 36 radiation
 ### 3.1 Summary of data
 The data sets, image1, image2, image3 have in total 345,556 data points with their x, y coordinates each. Based on the given study’s notation, the expert’s label 1 means clouds, -1 means no clouds and 0 means unlabeled. Each image has different proportion of clouds, 34.11% for image1, 17.77% for image2, and 18.44% for image3. In Table1, in total 23.43% of data points are clouds and 36.78% of data points are not clouds aside from 39.79% of unlabeled data points. It means that dataset’s classes are not evenly divided.
 
-<img src="01_EDA/data_summary_table.png" width="1430" />
+<img src="01_EDA/data_summary_table.png" width="500" />
 
 **Is an i.i.d assumption for the samples justified for this dataset?**
 
