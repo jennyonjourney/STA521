@@ -136,10 +136,10 @@ Among six different models, Logistic regression, LDA, QDA, Naïve Bayes, Random 
 
 
 **ROC**
+
 ROC curves are effective way to find the optimum threshold value. By increasing the threshold value, the model's sensitivity decreases, and specificity increases while the reverse happens if the threshold value is decreased. One should select the best threshold for the trade-off one wants to make. if you're more concerned with having a high specificity or low-false positive rate, pick the threshold that maximizes the true positive rate while keeping the false positive rate low. Firgure1 is one of the examples of ROC curve derived from random forest model. Depending on which part I can give up, specificity or sensitivity, we can decide the optimal cutoff.
 
 **MCC**
-
 One of additional metric to assess the model is Matthews correlation coefficient (MCC). It especially evaluates the effectiveness of the model when there is an imbalance between the two classes. The formula is MCC = (TP x TN - FP * FN) / √(TP+FP)(TP+FN)(TN+FP)(TN+FN). Here I used the logistic regression. The peak of the MCC occurs in the case where the specificity is somewhat larger than the sensitivity. One may wish to use a threshold either larger or smaller than the position of the peak of the MCC, depending on whether specificity or sensitivity is more highly valued.
 
 
